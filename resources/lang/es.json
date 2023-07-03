@@ -342,7 +342,10 @@
      "Cart Order": "Pedido",
      "Cart Total": "Total del pedido",
      "Payment Method": "Metodo de Pago",
-     "Direct Bank Transfer or Payment on Delivery": "Transferencia Bancaria o Pago al Recibirlo"
+     "Direct Bank Transfer or Payment on Delivery": "Transferencia Bancaria o Pago al Recibirlo",
+     "You have": "Tienes",
+     "item(s) out of stock, if you proceed it will be removed from your cart": "artículo(s) agotado(s), si continúa, será retirada de su carrito",
+     "You must have a maximum of 10 items in your cart you must delete a certain amount to proceed to checkout": "Debes tener máximo 10 artículos en tu carrito, debes eliminar cierta cantidad para proceder a pagar"
 
 
 

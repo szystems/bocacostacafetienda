@@ -172,21 +172,32 @@
                         @if ($cartitems->count() > 0)
                             @php
                                 $outofstock = 0;
+                                $cant = 0;
                                 foreach($cartitems as $item)
                                 {
                                     if ($item->qty < $item->prod_qty) {
                                         $outofstock++;
                                     }
+
+                                    $cant = $cant + $item->prod_qty;
                                 }
                             @endphp
-                            @if ($outofstock > 0)
-                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block">{{ __('Proceed to Checkout') }}</a>
-                                <div class="alert alert-danger" role="alert">
-                                    You have <strong>{{ $outofstock }}</strong> item(s) out of stock, if you proceed it will be removed from your cart.
-                                </div>
+                            @if ($cant < 11)
+                                @if ($outofstock > 0)
+                                    <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block">{{ __('Proceed to Checkout') }}</a>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ __('You have') }} <strong>{{ $outofstock }}</strong> {{ __('item(s) out of stock, if you proceed it will be removed from your cart') }}.
+                                    </div>
+                                @else
+                                    <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">{{ __('Proceed to Checkout') }} {{ $cartitems->count() }}</a>
+                                @endif
                             @else
-                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">{{ __('Proceed to Checkout') }}</a>
+                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block disabled">{{ __('Proceed to Checkout') }}</a>
+                                <div class="alert alert-danger" role="alert">
+                                    {{ __('You must have a maximum of 10 items in your cart you must delete a certain amount to proceed to checkout') }}.
+                                </div>
                             @endif
+
 
                         @endif
 
