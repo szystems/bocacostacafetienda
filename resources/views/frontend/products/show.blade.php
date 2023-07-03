@@ -53,9 +53,9 @@
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             @if ($product->qty > 0)
                                 @if (Auth::guest())
-                                    <a href="{{ url('login') }}" class="btn btn-primary btn-outline-primary addToCartBtn">Add to Cart</a>
+                                    <a href="{{ url('login') }}" class="btn btn-primary btn-outline-primary addToCartBtn">{{ __('Add to Cart') }}</a>
                                 @else
-                                    <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">Add to Cart</a>
+                                    <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">{{ __('Add to Cart') }}</a>
                                 @endif
                             @else
                                 <div class="product-action">

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
-                    <h2 class="mb-4">My Wishlist</h2>
+                    <h2 class="mb-4">{{ __('My Cart') }}</h2>
                     <div class="cart-list">
                         <table class="table">
                             @php
@@ -16,9 +16,9 @@
                                     <tr class="text-center">
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>{{ __('Product') }}</th>
+                                        <th>{{ __('Price') }}</th>
+                                        <th>{{ __('Quantity') }}</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
@@ -125,7 +125,7 @@
                                     <font color="red">Cart is empty</font>
                                 </strong>
                             </span>
-                            <a href="{{ url('category') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span> <i class="icon-refresh"></i></a>
+                            <a href="{{ url('category') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>{{ __('CONTINUE SHOPPING') }}</span> <i class="icon-refresh"></i></a>
                             @endif
                         </table>
                     </div>
@@ -134,7 +134,7 @@
             <div class="row justify-content-end">
                 <div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
                     <div class="cart-total mb-3">
-                        <h3>Cart Totals</h3>
+                        <h3>{{ __('Cart Totals') }}</h3>
                         <p class="d-flex">
                             <span>Subtotal</span>
                             <span>{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</span>
@@ -180,12 +180,12 @@
                                 }
                             @endphp
                             @if ($outofstock > 0)
-                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block">Proceed to Checkout</a>
+                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block">{{ __('Proceed to Checkout') }}</a>
                                 <div class="alert alert-danger" role="alert">
                                     You have <strong>{{ $outofstock }}</strong> item(s) out of stock, if you proceed it will be removed from your cart.
                                 </div>
                             @else
-                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                                <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">{{ __('Proceed to Checkout') }}</a>
                             @endif
 
                         @endif

@@ -291,7 +291,7 @@
                                         @endif
                                         <br>
                                         <div align="center">
-                                            <a href="{{ url('cart') }}" class="btn btn-primary">View Cart <span class="icon icon-shopping_cart"></span></a>
+                                            <a href="{{ url('cart') }}" class="btn btn-primary">{{ __('View Cart') }} <span class="icon icon-shopping_cart"></span></a>
                                             @php
                                                 $outofstock = 0;
                                                 foreach($cartitems as $item)
@@ -304,10 +304,10 @@
 
                                             @if ($cartitems->count() > 0)
                                                 @if ($outofstock > 0)
-                                                    <a href="{{ url('checkout') }}" class="btn btn-primary"><span>Checkout</span> <i class="icon-long-arrow-right"></i></a>
+                                                    <a href="{{ url('checkout') }}" class="btn btn-primary"><span>{{ __('Checkout') }}</span> <i class="icon-long-arrow-right"></i></a>
                                                     <br>
                                                 @else
-                                                    <a href="{{ url('checkout') }}" class="btn btn-primary"><span>Checkout</span> <i class="icon-long-arrow-right"></i></a>
+                                                    <a href="{{ url('checkout') }}" class="btn btn-primary"><span>{{ __('Checkout') }}</span> <i class="icon-long-arrow-right"></i></a>
                                                 @endif
 
                                             @endif

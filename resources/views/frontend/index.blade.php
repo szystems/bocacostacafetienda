@@ -275,15 +275,15 @@
                                                             @if ($config->store == 1)
                                                                 @if ($prod->qty > 0)
                                                                     @if (Auth::guest())
-                                                                        <a href="{{ url('login') }}" class="btn btn-primary btn-outline-primary addToCartBtn">Add to Cart</a>
+                                                                        <a href="{{ url('login') }}" class="btn btn-primary btn-outline-primary addToCartBtn">{{ __('Add to Cart') }}</a>
                                                                     @else
-                                                                        <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">Add to Cart</a>
+                                                                        <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">{{ __('Add to Cart') }}</a>
                                                                     @endif
                                                                 @else
                                                                     <div class="product-action">
-                                                                        <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}" class="btn-product"><i class="icon-search"></i><span> View Details...</span></a>
+                                                                        <a href="{{ url('category/'.$prod->category->slug.'/'.$prod->slug) }}" class="btn-product"><i class="icon-search"></i><span> V{{ __('View Details') }}...</span></a>
                                                                     </div><!-- End .product-action -->
-                                                                    <a href="{{ url('category/'.$cat->slug.'/'.$prod->slug) }}" class="btn btn-primary btn-outline-primary">View Product...</a>
+                                                                    <a href="{{ url('category/'.$cat->slug.'/'.$prod->slug) }}" class="btn btn-primary btn-outline-primary">{{ __('View Product') }}...</a>
                                                                 @endif
 
                                                             @endif
@@ -293,12 +293,12 @@
                                                                 @if ($prod->shopify_link != null)
                                                                     <a href="{{ $prod->shopify_link }}" target="_blank">
                                                                         {{-- <img src="{{ asset('assets/imgs/buynowshopify.png') }}" class="img-fluid"  alt=""> --}}
-                                                                        <a href="{{ $prod->shopify_link }}" class="btn btn-primary btn-outline-primary">Buy Now</a>
+                                                                        <a href="{{ $prod->shopify_link }}" class="btn btn-primary btn-outline-primary">{{ __('Buy Now') }}</a>
                                                                     </a>
                                                                 @else
                                                                     <a href="{{ $config->shopify_link }}" target="_blank">
                                                                         {{-- <img src="{{ asset('assets/imgs/buynowshopify.png') }}" class="img-fluid"  alt=""> --}}
-                                                                        <a href="{{ $config->shopify_link }}" class="btn btn-primary btn-outline-primary">Buy Now</a>
+                                                                        <a href="{{ $config->shopify_link }}" class="btn btn-primary btn-outline-primary">{{ __('Buy Now') }}</a>
                                                                     </a>
                                                                 @endif
 

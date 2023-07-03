@@ -23,7 +23,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="firstname">Firt Name *</label>
+                                    <label for="firstname">{{ __('First Name') }} *</label>
                                     @php
                                         $usuario = Auth::user()->name;
                                         $nombre = explode(' ', trim($usuario));
@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="lastname">Last Name *</label>
+                                    <label for="lastname">{{ __('Last Name') }} *</label>
                                     @if ($names > 1)
                                         <input type="text" name="lname" class="form-control" id="lname"
                                             placeholder="Enter Last Name" value="{{ ucwords($nombre[1]) }}">
@@ -68,7 +68,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="emailaddress">Email Address *</label>
+                                    <label for="emailaddress">{{ __('Email Address') }} *</label>
                                     <input type="email" name="email" class="form-control" id="email"
                                         placeholder="Enter Email" value="{{ Auth::user()->email }}">
                                     <span id="email_error" class="text-danger"></span>
@@ -84,7 +84,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="phone">Phone *</label>
+                                    <label for="phone">{{ __('Phone') }} *</label>
                                     <input type="tel" name="phone" class="form-control" id="phone"
                                         placeholder="Enter Phone Number" value="{{ Auth::user()->phone }}">
                                     <span id="phone_error" class="text-danger"></span>
@@ -102,7 +102,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="city">Town / City *</label>
+                                    <label for="city">{{ __('City') }} *</label>
                                     <input type="text" name="city" class="form-control" id="city"
                                         placeholder="Enter Town / City" value="{{ Auth::user()->city }}">
                                     <span id="city_error" class="text-danger"></span>
@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="state">State*</label>
+                                    <label for="state">{{ __('State') }} *</label>
                                     <select class="form-control" name="state" id="state">
                                         <option selected value="{{ Auth::user()->state }}">{{ Auth::user()->state }}</option>
 
@@ -187,7 +187,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="zipcode">Postcode / ZIP *</label>
+                                    <label for="zipcode">{{ __('Zipcode') }} *</label>
                                     <input type="text" name="zipcode" class="form-control" id="zipcode"
                                         placeholder="Enter Postcode / Zipcode" value="{{ Auth::user()->zipcode }}">
                                     <span id="zipcode_error" class="text-danger"></span>
@@ -203,7 +203,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="country">Country *</label>
+                                    <label for="country">{{ __('Country') }} *</label>
                                     <input readonly type="text" name="country" class="form-control" id="country" placeholder="Enter Country" value="United States">
                                 <span id="country_error" class="text-danger"></span>
                                 @if ($errors->has('country'))
@@ -218,7 +218,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="address2">Address 1 *</label>
+                                    <label for="address2">{{ __('Address') }} 1 *</label>
                                     <input type="text" name="address1" class="form-control" id="address1"
                                         placeholder="House number and Street name" value="{{ Auth::user()->address1 }}">
                                     <span id="address1_error" class="text-danger"></span>
@@ -236,7 +236,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="address2">Address 2</label>
+                                    <label for="address2">{{ __('Address') }} 2</label>
                                     <input type="text" name="address2" class="form-control" id="address2"
                                 placeholder="House number and Street name (optional)" value="{{ Auth::user()->address2 }}">
                                 </div>
@@ -269,13 +269,13 @@
                         <div class="row mt-5 pt-3 d-flex">
                             <div class="col-md-4 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
-                                    <h3 class="billing-heading mb-4">Cart Order</h3>
+                                    <h3 class="billing-heading mb-4">{{ __('Cart Order') }}</h3>
                                     @php
                                         $total = 0;
                                     @endphp
                                     <p class="d-flex">
                                         <h5>
-                                            <span>Products</span>
+                                            <span>{{ __('Products') }}</span>
                                         </h5>
                                     </p>
                                     @foreach ($cartProducts as $item)
@@ -309,7 +309,7 @@
                             </div>
                             <div class="col-md-4 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
-                                    <h3 class="billing-heading mb-4">Cart Total</h3>
+                                    <h3 class="billing-heading mb-4">{{ __('Cart Total') }}</h3>
                                     <p class="d-flex">
                                         <span>Subtotal</span>
                                         <span>{{ $config->currency_simbol }}{{ number_format($total, 2, '.', ',') }}</span>
@@ -347,14 +347,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="cart-detail ftco-bg-dark p-3 p-md-4">
-                                    <h3 class="billing-heading mb-4">Payment Method</h3>
+                                    <h3 class="billing-heading mb-4">{{ __('Payment Method') }}</h3>
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <div id="paypal-button-container"></div>
                                         </div>
                                     </div>
 
-                                    <p><button type="submit"class="btn btn-primary py-3 px-4 ">Direct Bank Transfer</button></p>
+                                    <p><button type="submit"class="btn btn-primary py-3 px-4 ">{{ __('Direct Bank Transfer or Payment on Delivery') }}</button></p>
                                     <input type="hidden" name="payment_mode" value="POD or DBT">
                                 </div>
                             </div>

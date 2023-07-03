@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 ftco-animate">
-                    <h2 class="mb-4">My Wishlist</h2>
+                    <h2 class="mb-4">{{ __('My Whishlist') }}</h2>
                     <div class="cart-list">
                         <table class="table">
                             @if ($wishlist->count() > 0)
@@ -13,9 +13,9 @@
                                     <tr class="text-center">
                                         <th>&nbsp;</th>
                                         <th>&nbsp;</th>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>{{ __('Product') }}</th>
+                                        <th>{{ __('Price') }}</th>
+                                        <th>{{ __('Quantity') }}</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
@@ -63,13 +63,13 @@
 
                                             @if ($prod->qty == 0)
                                                 <td class="action-col">
-                                                    <button disabled class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to Cart</button>
+                                                    <button disabled class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>{{ __('Add to Cart') }}</button>
                                                 </td>
                                             @else
                                                 <td class="action-col" align="center">
                                                     <input type="hidden" class="prod_id" value="{{ $prod->ProdID }}">
                                                     {{-- <input type="hidden" value="1" class="qty-input"> --}}
-                                                    <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">Add to Cart</a>
+                                                    <a href="#" class="btn btn-primary btn-outline-primary addToCartBtn">{{ __('Add to Cart') }}</a>
                                                 </td>
                                             @endif
                                         </tr><!-- END TR-->
@@ -78,10 +78,10 @@
                             @else
                                 <span class="help-block opacity-7">
                                     <strong>
-                                        <font color="red">Wishlist is empty</font>
+                                        <font color="red">{{ __('Whishlist is empty') }}</font>
                                     </strong>
                                 </span>
-                                <a href="{{ url('category') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span> <i class="icon-refresh"></i></a>
+                                <a href="{{ url('category') }}" class="btn btn-outline-dark-2 btn-block mb-3"><span>{{ __('CONTINUE SHOPPING') }}</span> <i class="icon-refresh"></i></a>
                             @endif
                         </table>
                     </div>

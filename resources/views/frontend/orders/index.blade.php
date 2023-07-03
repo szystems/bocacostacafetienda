@@ -68,7 +68,7 @@
 
                                             <td class="total">
                                                 <p>
-                                                    <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-primary py-3 px-4 btn-block"><span>View order</span></a>
+                                                    <a href="{{ url('view-order/'.$item->id) }}" class="btn btn-primary py-3 px-4 btn-block"><span>{{ __('View Order') }}</span></a>
                                                 </p>
 
                                             </td>
