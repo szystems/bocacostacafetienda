@@ -80,73 +80,47 @@
                                     </span>
                                 @endif
                             </div><!-- End .col-sm-6 -->
+
+
                             <div class="col-sm-3">
-                                <label>{{ __('City') }}</label>
-                                <input name="city" type="text" class="form-control" value="{{ $user->city }}">
-                                @if ($errors->has('city'))
+                                <label>{{ __('Country') }}</label>
+                                <input readonly name="country" type="text" class="form-control" value="Guatemala">
+                                @if ($errors->has('country'))
                                     <span class="help-block opacity-7">
                                             <strong>
-                                                <font color="red">{{ $errors->first('city') }}</font>
+                                                <font color="red">{{ $errors->first('country') }}</font>
                                             </strong>
                                     </span>
                                 @endif
                             </div><!-- End .col-sm-6 -->
                             <div class="col-sm-3">
-                                <label>{{ __('State/Province') }}</label>
-                                <select class="form-control" name="state" id="state">
+                                <label>{{ __('State') }}</label>
+                                <select class="form-control" name="state" id="departamentos" onchange="cargarMunicipios()" required>
                                     <option selected value="{{ $user->state }}">{{ $user->state }}</option>
 
-                                    <option value="AL Alabama">AL Alabama</option>
-                                    <option value="AK Alaska">AK Alaska</option>
-                                    <option value="AZ Arizona">AZ Arizona</option>
-                                    <option value="AR Arkansas">AR Arkansas</option>
-                                    <option value="CA California">CA California</option>
-                                    <option value="CO Colorado">CO Colorado</option>
-                                    <option value="CT Connecticut">CT Connecticut</option>
-                                    <option value="DE Delaware">DE Delaware</option>
-                                    <option value="DC District Of Columbia">DC District Of Columbia</option>
-                                    <option value="FL Florida">FL Florida</option>
-                                    <option value="GA Georgia">GA Georgia</option>
-                                    <option value="HI Hawaii">HI Hawaii</option>
-                                    <option value="ID Idaho">ID Idaho</option>
-                                    <option value="IL Illinois">IL Illinois</option>
-                                    <option value="IN Indiana">IN Indiana</option>
-                                    <option value="IA Iowa">IA Iowa</option>
-                                    <option value="KS Kansas">KS Kansas</option>
-                                    <option value="KY Kentucky">KY Kentucky</option>
-                                    <option value="LA Louisiana">LA Louisiana</option>
-                                    <option value="ME Maine">ME Maine</option>
-                                    <option value="MD Maryland">MD Maryland</option>
-                                    <option value="MA Massachusetts">MA Massachusetts</option>
-                                    <option value="MI Michigan">MI Michigan</option>
-                                    <option value="MN Minnesota">MN Minnesota</option>
-                                    <option value="MS Mississippi">MS Mississippi</option>
-                                    <option value="MO Missouri">MO Missouri</option>
-                                    <option value="MT Montana">MT Montana</option>
-                                    <option value="NE Nebraska">NE Nebraska</option>
-                                    <option value="NV Nevada">NV Nevada</option>
-                                    <option value="NH New Hampshire">NH New Hampshire</option>
-                                    <option value="NJ New Jersey">NJ New Jersey</option>
-                                    <option value="NM New Mexico">NM New Mexico</option>
-                                    <option value="NY New York">NY New York</option>
-                                    <option value="NC North Carolina">NC North Carolina</option>
-                                    <option value="ND North Dakota">ND North Dakota</option>
-                                    <option value="OH Ohio">OH Ohio</option>
-                                    <option value="OK Oklahoma">OK Oklahoma</option>
-                                    <option value="OR Oregon">OR Oregon</option>
-                                    <option value="PA Pennsylvania">PA Pennsylvania</option>
-                                    <option value="RI Rhode Island">RI Rhode Island</option>
-                                    <option value="SC South Carolina">SC South Carolina</option>
-                                    <option value="SD South Dakota">SD South Dakota</option>
-                                    <option value="TN Tennessee">TN Tennessee</option>
-                                    <option value="TX Texas">TX Texas</option>
-                                    <option value="UT Utah">UT Utah</option>
-                                    <option value="VT Vermont">VT Vermont</option>
-                                    <option value="VA Virginia">VA Virginia</option>
-                                    <option value="WA Washington">WA Washington</option>
-                                    <option value="WV West Virginia">WV West Virginia</option>
-                                    <option value="WI Wisconsin">WI Wisconsin</option>
-                                    <option value="WY Wyoming">WY Wyoming</option>
+                                    <option value="">Selecciona un departamento</option>
+                                    <option value="Alta Verapaz">Alta Verapaz</option>
+                                    <option value="Baja Verapaz">Baja Verapaz</option>
+                                    <option value="Chimaltenango">Chimaltenango</option>
+                                    <option value="Chiquimula">Chiquimula</option>
+                                    <option value="El Progreso">El Progreso</option>
+                                    <option value="Escuintla">Escuintla</option>
+                                    <option value="Guatemala">Guatemala</option>
+                                    <option value="Huehuetenango">Huehuetenango</option>
+                                    <option value="Izabal">Izabal</option>
+                                    <option value="Jalapa">Jalapa</option>
+                                    <option value="Jutiapa">Jutiapa</option>
+                                    <option value="Petén">Petén</option>
+                                    <option value="Quetzaltenango">Quetzaltenango</option>
+                                    <option value="Quiché">Quiché</option>
+                                    <option value="Retalhuleu">Retalhuleu</option>
+                                    <option value="Sacatepéquez">Sacatepéquez</option>
+                                    <option value="San Marcos">San Marcos</option>
+                                    <option value="Santa Rosa">Santa Rosa</option>
+                                    <option value="Sololá">Sololá</option>
+                                    <option value="Suchitepéquez">Suchitepéquez</option>
+                                    <option value="Totonicapán">Totonicapán</option>
+                                    <option value="Zacapa">Zacapa</option>
                                 </select>
                                 @if ($errors->has('state'))
                                     <span class="help-block opacity-7">
@@ -157,12 +131,16 @@
                                 @endif
                             </div><!-- End .col-sm-6 -->
                             <div class="col-sm-3">
-                                <label>{{ __('Country') }}</label>
-                                <input readonly name="country" type="text" class="form-control" value="United States">
-                                @if ($errors->has('country'))
+                                <label>{{ __('City') }}</label>
+                                <select name="city" type="text" class="form-control" id="municipios" required>
+                                    <option selected value="{{ $user->city }}">{{ $user->city }}</option>
+
+                                    <option value="">Selecciona un municipio</option>
+                                </select>
+                                @if ($errors->has('city'))
                                     <span class="help-block opacity-7">
                                             <strong>
-                                                <font color="red">{{ $errors->first('country') }}</font>
+                                                <font color="red">{{ $errors->first('city') }}</font>
                                             </strong>
                                     </span>
                                 @endif
@@ -221,4 +199,50 @@
             </div>
         </div>
     </section> <!-- .section -->
+
+    <script>
+        const municipiosPorDepartamento = {
+          "Alta Verapaz": ["Cobán", "Chisec", "San Cristóbal Verapaz", "Santa Cruz Verapaz", "Tactic", "Tamahú", "San Juan Chamelco", "Panzós", "Senahú", "Cahabón", "Chahal", "Fray Bartolomé de las Casas", "Santa María Cahabón", "La Tinta", "Raxruhá"],
+          "Baja Verapaz": ["Salamá", "San Miguel Chicaj", "Rabinal", "Cubulco", "Granados", "San Jerónimo", "Purulhá"],
+          "Chimaltenango": ["Chimaltenango", "San José Poaquil", "San Martín Jilotepeque", "Comalapa", "Santa Apolonia", "Tecpán Guatemala", "Patzún", "Pochuta", "Patzicía", "Santa Cruz Balanyá", "Acatenango", "Yepocapa", "San Andrés Itzapa", "Parramos", "Zaragoza", "El Tejar"],
+          "Chiquimula": ["Chiquimula", "San José La Arada", "San Juan Ermita", "Jocotán", "Camotán", "Olopa", "Esquipulas", "Concepción Las Minas", "Quetzaltepeque"],
+          "El Progreso": ["Guastatoya", "Morazán", "San Agustín Acasaguastlán", "San Antonio La Paz", "San Cristóbal Acasaguastlán", "Sanarate", "Sansare", "Santa María Ixhuatán"],
+          "Escuintla": ["Escuintla", "Santa Lucía Cotzumalguapa", "La Democracia", "Siquinalá", "Masagua", "Tiquisate", "La Gomera", "Guazacapán", "San José", "Iztapa", "Palín", "San Vicente Pacaya", "Nueva Concepción"],
+          "Guatemala": ["Guatemala", "Santa Catarina Pinula", "San José Pinula", "San José del Golfo", "Palencia", "Chinautla", "San Pedro Ayampuc", "Mixco", "San Pedro Sacatepéquez", "San Juan Sacatepéquez", "San Raymundo", "Chuarrancho", "Fraijanes", "Amatitlán", "Villa Nueva", "Villa Canales", "San Miguel Petapa"],
+          "Huehuetenango": ["Huehuetenango", "Chiantla", "Malacatancito", "Cuilco", "Nentón", "San Pedro Necta", "Jacaltenango", "San Pedro Soloma", "San Ildelfonso Ixtahuacán", "Santa Bárbara", "La Libertad", "La Democracia", "San Miguel Acatán", "San Rafael La Independencia", "Todos Santos Cuchumatán", "San Juan Atitán", "Santa Eulalia", "San Mateo Ixtatán", "Colotenango", "San Sebastián Huehuetenango", "Tectitán", "Concepción Huista", "San Juan Ixcoy", "San Antonio Huista", "San Sebastián Coatán", "Santa Cruz Barillas", "Aguacatán", "San Rafael Petzal", "San Gaspar Ixchil", "Santiago Chimaltenango", "Santa Ana Huista"],
+          "Izabal": ["Puerto Barrios", "Livingston", "El Estor", "Morales", "Los Amates"],
+          "Jalapa": ["Jalapa", "San Pedro Pinula", "San Luis Jilotepeque", "San Manuel Chaparrón", "San Carlos Alzatate", "Monjas", "Mataquescuintla"],
+          "Jutiapa": ["Jutiapa", "El Progreso", "Santa Catarina Mita", "Agua Blanca", "Asunción Mita", "Yupiltepeque", "Atescatempa", "Jerez", "El Adelanto", "Zapotitlán", "Comapa", "Jalpatagua", "Conguaco", "Moyuta", "Pasaco", "San José Acatempa", "Quesada"],
+          "Petén": ["Flores", "San José", "San Benito", "San Andrés", "La Libertad", "San Francisco", "Santa Ana", "Dolores", "San Luis", "Sayaxché", "Melchor de Mencos", "Poptún", "Las Cruces", "La Blanca", "El Chal"],
+          "Quetzaltenango": ["Quetzaltenango", "Salcajá", "Olintepeque", "San Carlos Sija", "Sibilia", "Cabricán", "Cajolá", "San Miguel Siguilá", "Ostuncalco", "San Mateo", "Concepción Chiquirichapa", "San Martín Sacatepéquez", "Almolonga", "Cantel", "Huitán", "Zunil", "Colomba", "San Francisco La Unión", "El Palmar", "Coatepeque", "Génova", "Flores Costa Cuca", "La Esperanza"],
+          "Quiché": ["Santa Cruz del Quiché", "Chiché", "Chinique", "Zacualpa", "Chajul", "Chichicastenango", "Patzité", "San Antonio Ilotenango", "San Pedro Jocopilas", "Cunén", "San Juan Cotzal", "Joyabaj", "Nebaj", "San Andrés Sajcabajá", "Uspantán", "Sacapulas", "San Bartolomé Jocotenango", "Canillá"],
+          "Retalhuleu": ["Retalhuleu", "San Sebastián", "Santa Cruz Mulúa", "San Martín Zapotitlán", "San Felipe", "San Andrés Villa Seca", "Champerico", "Nuevo San Carlos", "El Asintal"],
+          "Sacatepéquez": ["Antigua Guatemala", "Jocotenango", "Pastores", "Sumpango", "Santo Domingo Xenacoj", "Santiago Sacatepéquez", "San Bartolomé Milpas Altas", "San Lucas Sacatepéquez", "Santa Lucía Milpas Altas", "Magdalena Milpas Altas", "Santa María de Jesús", "Ciudad Vieja", "San Miguel Dueñas", "San Juan Alotenango", "San Antonio Aguas Calientes"],
+          "San Marcos": ["San Marcos", "San Pedro Sacatepéquez", "San Antonio Sacatepéquez", "Comitancillo", "San Miguel Ixtahuacán", "Concepción Tutuapa", "Tacaná", "Sibinal", "Tajumulco", "Tejutla", "San Rafael Pie de la Cuesta", "Nuevo Progreso", "El Tumbador", "San José El Rodeo", "Malacatán", "Catarina", "Ayutla", "Ocós", "San Pablo", "El Quetzal", "La Reforma", "Pajapita", "Ixchiguan", "San José Ojetenam"],
+          "Santa Rosa": ["Cuilapa", "Barberena", "Santa Rosa de Lima", "Casillas", "San Rafael Las Flores", "Oratorio", "San Juan Tecuaco", "Chiquimulilla", "Taxisco", "Santa María Ixhuatán", "Guazacapán", "Santa Cruz Naranjo", "Pueblo Nuevo Viñas", "Nueva Santa Rosa"],
+          "Sololá": ["Sololá", "San José Chacayá", "Santa María Visitación", "Santa Lucía Utatlán", "Nahualá", "Santa Catarina Ixtahuacán", "Santa Clara La Laguna", "Concepción", "San Andrés Semetabaj", "Panajachel", "Santa Catarina Palopó", "San Antonio Palopó", "San Lucas Tolimán", "Santa Cruz La Laguna", "San Pablo La Laguna", "San Marcos La Laguna", "San Juan La Laguna", "San Pedro La Laguna"],
+          "Suchitepéquez": ["Mazatenango", "Cuyotenango", "San Francisco Zapotitlán", "San Bernardino", "San José El Idolo", "Santo Domingo Suchitepéquez", "San Lorenzo", "Samayac", "San Pablo Jocopilas", "San Antonio Suchitepéquez", "San Miguel Panán", "San Gabriel", "Chicacao", "Patulul", "Santa Bárbara", "San Juan Bautista", "Santo Tomás La Unión", "Zunilito", "Pueblo Nuevo"],
+          "Totonicapán": ["Totonicapán", "San Cristóbal Totonicapán", "San Francisco El Alto", "Santa María Chiquimula", "San Bartolo", "Santa Lucía La Reforma", "San Andrés Xecul", "Momostenango"],
+          "Zacapa": ["Zacapa", "Estanzuela", "Río Hondo", "Gualán", "Teculután", "Usumatlán", "Cabañas", "San Diego", "La Unión", "Huite"],
+        };
+
+        function cargarMunicipios() {
+          const departamentoSelect = document.getElementById("departamentos");
+          const municipioSelect = document.getElementById("municipios");
+          const departamento = departamentoSelect.value;
+
+          municipioSelect.innerHTML = "<option value=''>Selecciona un municipio</option>";
+
+          if (departamento && municipiosPorDepartamento.hasOwnProperty(departamento)) {
+            const municipios = municipiosPorDepartamento[departamento];
+            municipios.forEach(function(municipio) {
+              const option = document.createElement("option");
+              option.value = municipio;
+              option.text = municipio;
+              municipioSelect.appendChild(option);
+            });
+          }
+        }
+      </script>
+
 @endsection

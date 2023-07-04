@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Config extends Model
 {
     use HasFactory;
+
     protected $table = 'configs';
     protected $fillable = [
         'logo',
@@ -19,6 +20,7 @@ class Config extends Model
         'paypal',
         'dbt',
         'shipping_description',
+        'shipping',
         'email',
         'store',
         'shopify',
@@ -27,6 +29,6 @@ class Config extends Model
         'amazon_link',
         'advertisement',
         'advertisement_link',
-        'advertisement_image'
+        'advertisement_image',
     ];
 }

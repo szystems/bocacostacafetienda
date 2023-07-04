@@ -181,17 +181,35 @@
                                     @endforeach
                                 </tbody>
                                 <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="align-middle text-right"><h8>{{ __('Sub-Total') }}:</h8></td>
+                                        <td class="align-middle text-center"><h8><strong>{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</strong></h8></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="align-middle text-right"><h8>{{ __('Shipping') }}:</h8></td>
+                                        <td class="align-middle text-center"><h8><strong>{{ $config->currency_simbol }}{{ number_format($order->shipping,2, '.', ',') }}</strong></h8></td>
+                                    </tr>
                                     @if ($order->total_tax != 0)
                                         <tr>
                                             @php
                                                 $tax_total = $order->total_tax;
-                                                $total = $total + $tax_total;
+                                                $shipping = $order->shipping;
+                                                $total = $total + $tax_total + $shipping;
                                             @endphp
                                             <td></td>
                                             <td></td>
                                             <td class="align-middle text-right"><h8>{{ __('Total Tax') }}:</h8></td>
                                             <td class="align-middle text-center"><h8><strong>{{ $config->currency_simbol }}{{ number_format($tax_total,2, '.', ',') }}</strong></h8></td>
                                         </tr>
+                                    @else
+                                        @php
+                                            $shipping = $order->shipping;
+                                            $total = $total + $shipping;
+                                        @endphp
                                     @endif
                                     <tr>
                                         <td></td>

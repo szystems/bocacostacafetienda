@@ -56,6 +56,7 @@ class ConfigController extends Controller
         $config->paypal = $request->input('paypal') == TRUE ? '1':'0';
         $config->dbt = $request->input('dbt') == TRUE ? '1':'0';
         $config->shipping_description = $request->input('shipping_description');
+        $config->shipping = $request->input('shipping');
         $config->email = $request->input('email');
         $config->store = $request->input('store') == TRUE ? '1':'0';
         $config->shopify = $request->input('shopify') == TRUE ? '1':'0';

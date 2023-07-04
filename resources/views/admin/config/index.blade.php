@@ -125,7 +125,21 @@
                                 </div>
                                 <label><font color="orange">{{ __('Enable Amazon Link') }}</font></label>
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-2 mb-3">
+                                <label for="">{{ __('Shipping Price') }}</label>
+                                <div class="input-group input-group-dynamic mb-4">
+                                    <span class="input-group-text">{{ $config->currency_simbol }}</span>
+                                    <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="shipping" value="{{ number_format($config->shipping, 2, '.', ',') }}">
+                                </div>
+                                @if ($errors->has('shipping'))
+                                    <span class="help-block opacity-7">
+                                            <strong>
+                                                <font color="red">{{ $errors->first('shipping') }}</font>
+                                            </strong>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-md-10 mb-3">
                                 <label for="">{{ __('Shipping Description') }}</label>
                                 <textarea name="shipping_description" cols="30" rows="5" class="form-control border px-2 ">{{ $config->shipping_description }}</textarea>
                                 @if ($errors->has('shipping_description'))
@@ -136,6 +150,7 @@
                                     </span>
                                 @endif
                             </div>
+
                             <div class="col-md-3 mb-3">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" name="advertisement" {{ $config->advertisement == 1 ? 'checked':'' }}>

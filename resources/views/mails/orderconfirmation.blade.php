@@ -67,35 +67,35 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Order Confirmation</h1>
+            <h1>{{ __('Order Confirmation') }}</h1>
         </div>
         <div class="content">
             <div align="center">
                 <img src="{{asset("assets/uploads/logos/".$config->logo)}}" alt="Logo">
             </div>
 
-            <p>Thank you for your purchase! Here you have the detail of your order:</p>
-            <h2>Customer Information</h2>
+            <p>{{ __('Thank you for your purchase! Here you have the detail of your order') }}:</p>
+            <h2>{{ __('Customer Information') }}</h2>
             <table>
                 <tr>
                     @php
                         $date = new DateTime($order->created_at, new DateTimeZone(date_default_timezone_get()));
                         $date->setTimezone(new DateTimeZone($user->timezone));
                     @endphp
-                    <th>Order Date: ({{ $user->timezone }})</th>
+                    <th>{{ __('Order Date') }}: ({{ $user->timezone }})</th>
                     <td>{{ $order->fname }} {{ $order->lname }}</td>
                 </tr>
                 <tr>
-                    <th>Status:</th>
+                    <th>{{ __('Status') }}:</th>
                     <td>{{ $order->status == '0' ?'Pending' : 'Completed' }}</td>
                 </tr>
                 <tr>
-                    <th>Traking No:</th>
+                    <th>{{ __('Tracking Number') }}:</th>
                     <td>{{ $order->tracking_no }}</td>
                 </tr>
                 @if ($order->payment_mode != null)
                     <tr>
-                        <th>Payment Mode:</th>
+                        <th>{{ __('Payment Method') }}:</th>
                         <td>
                             {{ $order->payment_mode }}
                             @if ($order->payment_id != null)
@@ -105,62 +105,62 @@
                     </tr>
                 @endif
                 <tr>
-                    <th>Name:</th>
+                    <th>{{ __('Name') }}:</th>
                     <td>{{ $order->fname }} {{ $order->lname }}</td>
                 </tr>
                 <tr>
-                    <th>Address 1:</th>
+                    <th>{{ __('Address') }} 1:</th>
                     <td>{{ $order->address1 }}</td>
                 </tr>
                 <tr>
-                    <th>Phone:</th>
+                    <th>{{ __('Phone') }}:</th>
                     <td>{{ $order->phone }}</td>
                 </tr>
                 <tr>
-                    <th>Email:</th>
+                    <th>{{ __('Email Address') }}:</th>
                     <td>{{ $order->email }}</td>
                 </tr>
                 <tr>
-                    <th>Zipcode:</th>
+                    <th>{{ __('Zipcode') }}:</th>
                     <td>{{ $order->zipcode }}</td>
                 </tr>
                 <tr>
-                    <th>Address 1:</th>
+                    <th>{{ __('Address') }} 1:</th>
                     <td>{{ $order->address1 }}</td>
                 </tr>
                 <tr>
-                    <th>Address 2:</th>
+                    <th>{{ __('Address') }} 2:</th>
                     <td>{{ $order->address2 }}</td>
                 </tr>
                 <tr>
-                    <th>City:</th>
+                    <th>{{ __('City') }}:</th>
                     <td>{{ $order->city }}</td>
                 </tr>
                 <tr>
-                    <th>State:</th>
+                    <th>{{ __('State') }}:</th>
                     <td>{{ $order->state }}</td>
                 </tr>
                 <tr>
-                    <th>Country:</th>
+                    <th>{{ __('Country') }}:</th>
                     <td>{{ $order->country }}</td>
                 </tr>
                 @if ($order->note != null)
                     <tr>
-                        <th>Notes:</th>
+                        <th>{{ __('Note') }}:</th>
                         <td>{{ $order->note }}</td>
                     </tr>
                 @endif
             </table>
 
-            <h2>Order Details</h2>
+            <h2>{{ __(("Order Details")) }}</h2>
             <table>
                 @php
                     $total = 0;
                 @endphp
                 <tr>
-                    <th>Product</th>
-                    <th>Qty</th>
-                    <th>Price</th>
+                    <th>{{ __('Product') }}</th>
+                    <th>{{ __('Quantity') }}</th>
+                    <th>{{ __('Price') }}</th>
                     <th>SubTotal</th>
                 </tr>
                 @foreach ($order->orderitems as $item)
@@ -189,24 +189,38 @@
                         <td align="right">{{ $config->currency_simbol }}{{ number_format($subtotal,2, '.', ',') }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td colspan="3" class="total">Sub-Total:</td>
+                    <td align="right">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="total">{{ __('Shipping') }}:</td>
+                    <td align="right">{{ $config->currency_simbol }}{{ number_format($order->shipping,2, '.', ',') }}</td>
+                </tr>
                 @if ($order->total_tax != 0)
                 <tr>
                     @php
                         $tax_total = $order->total_tax;
-                        $total = $total + $tax_total;
+                        $shipping = $order->shipping;
+                        $total = $total + $tax_total + $shipping;
                     @endphp
-                    <td colspan="3" class="total">Tax:</td>
+                    <td colspan="3" class="total">{{ __('Total Tax') }}:</td>
                     <td align="right">{{ $config->currency_simbol }}{{ number_format($tax_total,2, '.', ',') }}</td>
                 </tr>
+                @else
+                    @php
+                        $shipping = $order->shipping;
+                        $total = $total + $shipping;
+                    @endphp
                 @endif
                 <tr>
-                    <td colspan="3" class="total">Total:</td>
-                    <td align="right">{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</td>
+                    <td colspan="3" class="total"><b>Total:</b></td>
+                    <td align="right"><b>{{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</b></td>
                 </tr>
             </table>
 
             <div class="button-container">
-                <a href="{{ url('view-order/'.$order->id) }}" class="button">Go to Order</a>
+                <a href="{{ url('view-order/'.$order->id) }}" class="button">{{ __('View Order') }}</a>
             </div>
         </div>
     </div>

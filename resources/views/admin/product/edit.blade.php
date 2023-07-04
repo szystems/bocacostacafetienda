@@ -97,7 +97,7 @@
                                 <label for="">{{ __('Price') }}</label>
                                 <div class="input-group input-group-dynamic mb-4">
                                     <span class="input-group-text">{{ $config->currency_simbol }}</span>
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="original_price" value="{{ $product->original_price }}">
+                                    <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="original_price" value="{{ $product->original_price }}">
                                 </div>
                                 @if ($errors->has('original_price'))
                                     <span class="help-block opacity-7">
@@ -111,7 +111,7 @@
                                 <label for="">{{ __('Discount Price') }}</label>
                                 <div class="input-group input-group-dynamic mb-4">
                                     <span class="input-group-text">{{ $config->currency_simbol }}</span>
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="selling_price" value="{{ $product->selling_price }}">
+                                    <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="selling_price" value="{{ $product->selling_price }}">
                                 </div>
                                 @if ($errors->has('selling_price'))
                                     <span class="help-block opacity-7">

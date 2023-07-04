@@ -74,6 +74,7 @@ Route::middleware(['auth'])->group(function () {
     //User Carts
     Route::get('cart', [CartController::class, 'viewcart']);
     Route::get('checkout', [CheckoutController::class, 'index']);
+    Route::post('confirm-order', [CheckoutController::class, 'confirmorder']);
     Route::post('place-order', [CheckoutController::class, 'placeorder']);
 
     Route::get('my-orders', [UserController::class, 'indexorders']);

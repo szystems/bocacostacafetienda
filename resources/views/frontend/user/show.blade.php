@@ -50,16 +50,16 @@
                             <small class="form-text">{{ __("You can't change email") }}</small>
                         </div><!-- End .col-sm-6 -->
                         <div class="col-sm-3">
-                            <label>{{ __('City') }}</label>
-                            <input readonly name="city" type="text" class="form-control" value="{{ $user->city }}">
+                            <label>{{ __('Country') }}</label>
+                            <input readonly name="country" type="text" class="form-control" value="{{ $user->country }}">
                         </div><!-- End .col-sm-6 -->
                         <div class="col-sm-3">
                             <label>{{ __('State') }}</label>
                             <input readonly name="state" type="text" class="form-control" value="{{ $user->state }}">
                         </div><!-- End .col-sm-6 -->
                         <div class="col-sm-3">
-                            <label>{{ __('Country') }}</label>
-                            <input readonly name="country" type="text" class="form-control" value="{{ $user->country }}">
+                            <label>{{ __('City') }}</label>
+                            <input readonly name="city" type="text" class="form-control" value="{{ $user->city }}">
                         </div><!-- End .col-sm-6 -->
                         <div class="col-sm-3">
                             <label>{{ __('Zipcode') }}</label>

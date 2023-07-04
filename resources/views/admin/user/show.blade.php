@@ -64,19 +64,19 @@
                             <p>{{ $user->address2 }}</p>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for=""><strong>{{ __('City') }}</strong></label>
-                            <p>{{ $user->city }}</p>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for=""><strong>{{ (__('State/Province')) }}</strong></label>
-                            <p>{{ $user->state }}</p>
-                        </div>
-                        <div class="col-md-3 mb-3">
                             <label for=""><strong>{{ __('Country') }}</strong></label>
                             <p>{{ $user->country }}</p>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for=""><strong>{{ __('Zip / Postal Code') }}</strong></label>
+                            <label for=""><strong>{{ (__('State')) }}</strong></label>
+                            <p>{{ $user->state }}</p>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for=""><strong>{{ __('City') }}</strong></label>
+                            <p>{{ $user->city }}</p>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for=""><strong>{{ __('Zipcode') }}</strong></label>
                             <p>{{ $user->zipcode }}</p>
                         </div>
                         <div class="col-md-3 mb-3">

@@ -184,17 +184,35 @@
 
                                     </tbody>
                                     <tfoot>
+                                        <tr>
+                                            <td class="price"></td>
+                                            <td class="price"></td>
+                                            <td class="price"><h8>{{ __('Sub-Total') }}: </h8></td>
+                                            <td class="price"><h8><font color=""> {{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</font></h8></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="price"></td>
+                                            <td class="price"></td>
+                                            <td class="price"><h8>{{ __('Shipping') }}: </h8></td>
+                                            <td class="price"><h8><font color=""> {{ $config->currency_simbol }}{{ number_format($orders->shipping,2, '.', ',') }}</font></h8></td>
+                                        </tr>
                                         @if ($orders->total_tax != 0)
                                             <tr>
                                                 @php
                                                     $tax_total = $orders->total_tax;
-                                                    $total = $total + $tax_total;
+                                                    $shipping = $orders->shipping;
+                                                    $total = $total + $tax_total + $shipping;
                                                 @endphp
                                                 <td class="price"></td>
                                                 <td class="price"></td>
-                                                <td class="price"><h8>Tax: </h8></td>
+                                                <td class="price"><h8>{{ __('Total Tax') }}: </h8></td>
                                                 <td class="price"><h8><font color=""> {{ $config->currency_simbol }}{{ number_format($tax_total,2, '.', ',') }}</font></h8></td>
                                             </tr>
+                                        @else
+                                            @php
+                                                $shipping = $orders->shipping;
+                                                $total = $total + $shipping;
+                                            @endphp
                                         @endif
                                         <tr>
                                             <td class="price"></td>

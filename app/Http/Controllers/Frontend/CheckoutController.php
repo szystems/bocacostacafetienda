@@ -33,6 +33,14 @@ class CheckoutController extends Controller
         return view('frontend.checkout', compact('cartProducts','config'));
     }
 
+    public function confirmorder(OrderFormRequest $request)
+    {
+        $order = $request;
+        $cartProducts = Cart::where('user_id', Auth::id())->get();
+        $config = Config::first();
+        return view('frontend.confirmcheckout', compact('request','cartProducts','config'));
+    }
+
     public function placeorder(OrderFormRequest $request)
     {
         $order = new Order();
@@ -65,8 +73,10 @@ class CheckoutController extends Controller
         }
 
         $total_tax = $request->input('tax');
+        $shipping = $request->input('shipping');
         $order->total_tax = $request->input('tax');
-        $order->total_price = $total + $total_tax;
+        $order->shipping = $request->input('shipping');
+        $order->total_price = $total + $total_tax + $shipping;
         $order->save();
 
 

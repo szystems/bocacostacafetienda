@@ -189,7 +189,7 @@
                                         {{ __('You have') }} <strong>{{ $outofstock }}</strong> {{ __('item(s) out of stock, if you proceed it will be removed from your cart') }}.
                                     </div>
                                 @else
-                                    <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">{{ __('Proceed to Checkout') }} {{ $cartitems->count() }}</a>
+                                    <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4">{{ __('Proceed to Checkout') }}</a>
                                 @endif
                             @else
                                 <a href="{{ url('checkout') }}" class="btn btn-primary py-3 px-4 btn-block disabled">{{ __('Proceed to Checkout') }}</a>

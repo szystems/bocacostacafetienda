@@ -4,12 +4,12 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <form action="{{ url('confirm-order') }}" method="POST">
+                <form action="{{ url('place-order') }}" method="POST">
                     {{ csrf_field() }}
 
                     <div class="col-xl-12 ftco-animate">
 
-                        <h3 class="mb-4 billing-heading">{{ __('Billing and Shipping Details') }}</h3>
+                        <h3 class="mb-4 billing-heading">{{ __('Confirm shipping and payment details') }}</h3>
                         @if (count($errors) > 0)
                             <div class="alert alert-danger text-white" role="alert">
                                 <ul>
@@ -25,12 +25,12 @@
                                 <div class="form-group">
                                     <label for="firstname">{{ __('First Name') }} *</label>
                                     @php
-                                        $usuario = Auth::user()->name;
+                                        $usuario = $request->fname;
                                         $nombre = explode(' ', trim($usuario));
                                         $names = str_word_count($usuario);
                                     @endphp
 
-                                    <input type="text" name="fname" class="form-control" id="fname"
+                                    <input readonly type="text" name="fname" class="form-control" id="fname"
                                         placeholder="Enter First Name" value="{{ ucwords($nombre[0]) }}">
                                     <span id="fname_error" class="text-danger"></span>
                                     @if ($errors->has('fname'))
@@ -46,13 +46,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="lastname">{{ __('Last Name') }} *</label>
-                                    @if ($names > 1)
-                                        <input type="text" name="lname" class="form-control" id="lname"
-                                            placeholder="Enter Last Name" value="{{ ucwords($nombre[1]) }}">
-                                    @else
-                                        <input type="text" name="lname" class="form-control" id="lname"
-                                            placeholder="Enter Last Name">
-                                    @endif
+                                        <input readonly type="text" name="lname" class="form-control" id="lname" placeholder="Enter Last Name" value="{{ $request->lname }}">
                                     <span id="lname_error" class="text-danger"></span>
                                     @if ($errors->has('lname'))
                                         <span class="help-block opacity-7">
@@ -69,8 +63,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="emailaddress">{{ __('Email Address') }} *</label>
-                                    <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter Email" value="{{ Auth::user()->email }}">
+                                    <input readonly type="email" name="email" class="form-control" id="email"
+                                        placeholder="Enter Email" value="{{ $request->email }}">
                                     <span id="email_error" class="text-danger"></span>
                                     @if ($errors->has('email'))
                                         <span class="help-block opacity-7">
@@ -85,8 +79,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">{{ __('Phone') }} *</label>
-                                    <input type="tel" name="phone" class="form-control" id="phone"
-                                        placeholder="Enter Phone Number" value="{{ Auth::user()->phone }}">
+                                    <input readonly type="tel" name="phone" class="form-control" id="phone"
+                                        placeholder="Enter Phone Number" value="{{ $request->phone }}">
                                     <span id="phone_error" class="text-danger"></span>
                                     @if ($errors->has('phone'))
                                         <span class="help-block opacity-7">
@@ -118,33 +112,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="state">{{ __('State') }} *</label>
-                                    <select class="form-control" name="state" id="state" onchange="cargarMunicipios()" required>
-                                        <option selected value="{{ Auth::user()->state }}">{{ Auth::user()->state }}</option>
+                                    <input readonly type="text" name="state" class="form-control" id="state" value="{{ $request->state }}">
 
-                                        <option value="">Selecciona un departamento</option>
-                                        <option value="Alta Verapaz">Alta Verapaz</option>
-                                        <option value="Baja Verapaz">Baja Verapaz</option>
-                                        <option value="Chimaltenango">Chimaltenango</option>
-                                        <option value="Chiquimula">Chiquimula</option>
-                                        <option value="El Progreso">El Progreso</option>
-                                        <option value="Escuintla">Escuintla</option>
-                                        <option value="Guatemala">Guatemala</option>
-                                        <option value="Huehuetenango">Huehuetenango</option>
-                                        <option value="Izabal">Izabal</option>
-                                        <option value="Jalapa">Jalapa</option>
-                                        <option value="Jutiapa">Jutiapa</option>
-                                        <option value="Petén">Petén</option>
-                                        <option value="Quetzaltenango">Quetzaltenango</option>
-                                        <option value="Quiché">Quiché</option>
-                                        <option value="Retalhuleu">Retalhuleu</option>
-                                        <option value="Sacatepéquez">Sacatepéquez</option>
-                                        <option value="San Marcos">San Marcos</option>
-                                        <option value="Santa Rosa">Santa Rosa</option>
-                                        <option value="Sololá">Sololá</option>
-                                        <option value="Suchitepéquez">Suchitepéquez</option>
-                                        <option value="Totonicapán">Totonicapán</option>
-                                        <option value="Zacapa">Zacapa</option>
-                                    </select>
                                     <span id="state_error" class="text-danger"></span>
                                     @if ($errors->has('state'))
                                         <span class="help-block opacity-7">
@@ -159,11 +128,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="city">{{ __('City') }} *</label>
-                                    <select name="city" type="text" class="form-control" id="city" required>
-                                        <option selected value="{{ Auth::user()->city }}">{{ Auth::user()->city }}</option>
-
-                                        <option value="">Selecciona un municipio</option>
-                                    </select>
+                                    <input readonly type="text" name="city" class="form-control" id="city" value="{{ $request->city }}">
                                     <span id="city_error" class="text-danger"></span>
                                     @if ($errors->has('city'))
                                         <span class="help-block opacity-7">
@@ -178,8 +143,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="zipcode">{{ __('Zipcode') }} *</label>
-                                    <input type="text" name="zipcode" class="form-control" id="zipcode"
-                                        placeholder="Enter Postcode / Zipcode" value="{{ Auth::user()->zipcode }}">
+                                    <input readonly type="text" name="zipcode" class="form-control" id="zipcode"
+                                        placeholder="Enter Postcode / Zipcode" value="{{ $request->zipcode }}">
                                     <span id="zipcode_error" class="text-danger"></span>
                                     @if ($errors->has('zipcode'))
                                         <span class="help-block opacity-7">
@@ -196,8 +161,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address2">{{ __('Address') }} 1 *</label>
-                                    <input type="text" name="address1" class="form-control" id="address1"
-                                        placeholder="House number and Street name" value="{{ Auth::user()->address1 }}">
+                                    <input readonly type="text" name="address1" class="form-control" id="address1"
+                                        placeholder="House number and Street name" value="{{ $request->address1 }}">
                                     <span id="address1_error" class="text-danger"></span>
                                     @if ($errors->has('address1'))
                                         <span class="help-block opacity-7">
@@ -214,8 +179,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="address2">{{ __('Address') }} 2</label>
-                                    <input type="text" name="address2" class="form-control" id="address2"
-                                placeholder="House number and Street name (optional)" value="{{ Auth::user()->address2 }}">
+                                    <input readonly type="text" name="address2" class="form-control" id="address2"
+                                placeholder="House number and Street name (optional)" value="{{ $request->address2 }}">
                                 </div>
                             </div>
 
@@ -284,7 +249,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-md-4 d-flex">
+                            {{-- <div class="col-md-4 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">{{ __('Shipping') }}</h3>
                                     <p class="d-flex total-price">
@@ -302,7 +267,7 @@
                                     </p>
 
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-4 d-flex">
                                 <div class="cart-detail cart-total ftco-bg-dark p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">{{ __('Cart Total') }}</h3>
@@ -314,7 +279,7 @@
 
                                     <p class="d-flex">
                                         <span>{{ __('Shipping') }}</span>
-                                        @if (((Auth::user()->city == "Guatemala") and (Auth::user()->state == "Guatemala")) or ((Auth::user()->city == "Quetzaltenango") and (Auth::user()->state == "Quetzaltenango")))
+                                        @if ((($request->city == "Guatemala") and ($request->state == "Guatemala")) or (($request->city == "Quetzaltenango") and ($request->state == "Quetzaltenango")))
                                             <span>{{ __('Free') }}</span>
                                             <input type="hidden" name="shipping" value="0.00" id="shipping">
                                         @else
@@ -326,7 +291,7 @@
                                     <p class="d-flex">
                                         @if ($config->tax_status == 1)
                                             @php
-                                                if (((Auth::user()->city == "Guatemala") and (Auth::user()->state == "Guatemala")) or ((Auth::user()->city == "Quetzaltenango") and (Auth::user()->state == "Quetzaltenango")))
+                                                if ((($request->city == "Guatemala") and ($request->state == "Guatemala")) or (($request->city == "Quetzaltenango") and ($request->state == "Quetzaltenango")))
                                                 {
                                                     $shipping = 0;
                                                 }else
@@ -365,11 +330,11 @@
                                         <span>Total</span>
                                         <span>{{ $config->currency_simbol }}{{ number_format($total, 2, '.', ',') }}</span>
                                     </p>
-                                    <p><button type="submit"class="btn btn-primary py-3 px-4 ">{{ __('Checkout') }}</button></p>
+                                    {{-- <p><button type="submit"class="btn btn-primary py-3 px-4 ">{{ __('Checkout') }}</button></p> --}}
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-4">
+                            <div class="col-md-4">
                                 <div class="cart-detail ftco-bg-dark p-3 p-md-4">
                                     <h3 class="billing-heading mb-4">{{ __('Payment Method') }}</h3>
                                     <div class="form-group">
@@ -381,7 +346,7 @@
                                     <p><button type="submit"class="btn btn-primary py-3 px-4 ">{{ __('Direct Bank Transfer or Payment on Delivery') }}</button></p>
                                     <input type="hidden" name="payment_mode" value="POD or DBT">
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div> <!-- .col-md-12 -->
 
@@ -397,7 +362,7 @@
         src="https://www.paypal.com/sdk/js?client-id=AZcA7N1HfyovVsRKIMRhHPKInRReBAI2qEyto2N8CLRXO-kCcjhpZwYuWpMJ59TRZxxGmwA5uh1Pvfc-&currency=USD">
     </script>
     {{-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> --}}
-    {{-- <script>
+    <script>
         paypal.Buttons({
             onClick() {
 
@@ -567,9 +532,9 @@
                 });
             }
         }).render('#paypal-button-container');
-    </script> --}}
+    </script>
 
-    <script>
+    {{-- <script>
         const municipiosPorDepartamento = {
         "Alta Verapaz": ["Cobán", "Chisec", "San Cristóbal Verapaz", "Santa Cruz Verapaz", "Tactic", "Tamahú", "San Juan Chamelco", "Panzós", "Senahú", "Cahabón", "Chahal", "Fray Bartolomé de las Casas", "Santa María Cahabón", "La Tinta", "Raxruhá"],
         "Baja Verapaz": ["Salamá", "San Miguel Chicaj", "Rabinal", "Cubulco", "Granados", "San Jerónimo", "Purulhá"],
@@ -612,5 +577,5 @@
             });
         }
         }
-    </script>
+    </script> --}}
 @endsection

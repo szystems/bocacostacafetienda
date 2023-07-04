@@ -220,11 +220,28 @@
                     </td>
                 </tr>
             @endforeach
+            <tr>
+                <td colspan="3" align="right">
+                    {{ __('Sub-Total') }}:
+                </td>
+                <td align="right">
+                    {{ $config->currency_simbol }}{{ number_format($total,2, '.', ',') }}</>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="right">
+                    {{ __('Shipping') }}:
+                </td>
+                <td align="right">
+                    {{ $config->currency_simbol }}{{ number_format($order->shipping,2, '.', ',') }}</>
+                </td>
+            </tr>
             @if ($order->total_tax != 0)
                 <tr>
                     @php
                         $tax_total = $order->total_tax;
-                        $total = $total + $tax_total;
+                        $shipping = $order->shipping;
+                        $total = $total + $tax_total + $shipping;
                     @endphp
                     <td colspan="3" align="right">
                         {{ __('Total Tax') }}:
@@ -233,6 +250,11 @@
                         {{ $config->currency_simbol }}{{ number_format($tax_total,2, '.', ',') }}</>
                     </td>
                 </tr>
+            @else
+                @php
+                    $shipping = $order->shipping;
+                    $total = $total + $shipping;
+                @endphp
             @endif
             <tr>
                 <td colspan="3" align="right">

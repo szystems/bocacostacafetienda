@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'timezone' => $data['timezone'],
-            'country' => "United States",
+            'country' => "Guatemala",
         ]);
     }
 }
